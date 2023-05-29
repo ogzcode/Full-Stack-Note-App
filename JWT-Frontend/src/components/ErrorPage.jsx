@@ -6,7 +6,7 @@ export default function ErrorPage() {
         <div className="vh-100 d-flex justify-content-center align-items-center">
             <div>
                 <p>404 Page Not Found !!</p>
-                <button className="btn btn-primary" onClick={() => navigate("register")}>Home Page</button>
+                <button className="btn btn-primary" onClick={() => navigate("/")}>Home Page</button>
             </div>
         </div>
     );

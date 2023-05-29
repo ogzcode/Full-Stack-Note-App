@@ -1,7 +1,7 @@
 import express from "express";
 
 import { auth } from "./auth.js";
-import { getTest, getAllData, register, login, getAuthUser, addNote, getUserNote } from "./controllers/apiControllers.js";
+import { getTest, getAllData, register, login, getAuthUser, addNote, getUserNote, deleteNote } from "./controllers/apiControllers.js";
 
 const app = express();
 
@@ -37,6 +37,8 @@ app.get("/auth", auth, getAuthUser);
 app.post("/auth/addNote", auth, addNote);
 
 app.get("/auth/notes", auth, getUserNote);
+
+app.delete("/auth/delete", auth, deleteNote);
 
 app.listen(3000, () => {
     console.log("Sunucu: localhost:3000");

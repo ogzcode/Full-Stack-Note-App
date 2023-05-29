@@ -28,15 +28,15 @@ function App() {
   return (
     <AuthProvider userData={token}>
       <Routes>
+      <Route path='/' element={<Register />} />
         <Route path='profile/*' element={
           <ProtectedRoutes>
             <AuthComp />
           </ProtectedRoutes>
         }
         />
-        <Route path='register' element={<Register />} />
         <Route path='login' element={<Login />} />
-        <Route path='*' element={<ErrorPage/>}/>
+        <Route path='/*' element={<ErrorPage/>}/>
       </Routes>
     </AuthProvider>
   )

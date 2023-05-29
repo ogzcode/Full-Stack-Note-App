@@ -111,7 +111,7 @@ export const addNote = (req, res) => {
         "utf8"
     );
     
-    res.status(201).json({ message: "Your note has been added" });
+    res.status(201).send({ message: "Your note has been added" });
 };
 
 export const getUserNote = (req, res) => {
@@ -119,4 +119,19 @@ export const getUserNote = (req, res) => {
     let user = users.find(user => user.email === req.user.email);
 
     res.status(200).json({ notes: user.notes });
+}
+
+export const deleteNote = (req, res) => {
+    let users = JSON.parse(readFileSync("./model/users.json")).users;
+    let user = users.find(user => user.email === req.user.userEmail);
+    console.log("hello");
+    user.notes.splice(req.body.index, 1);
+
+    writeFileSync(
+        "./model/users.json",
+        JSON.stringify({ users: users }, null, 2),
+        "utf8"
+    );
+
+    res.status(204).json({ message: "Deleted"});
 }

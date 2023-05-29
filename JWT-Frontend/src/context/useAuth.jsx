@@ -89,12 +89,37 @@ export const AuthProvider = ({ userData, children }) => {
         };
 
         await axios(configuration)
-            .then(response => {
-                redirect("/profile");
+            .then((response) => {
+                console.log(response);
+                redirect("profile");
             })
             .catch((error) => {
                 let err = error.toJSON().status;
             });
+    };
+
+    const deleteNote = async (index) => {
+        const token = cookies.get("TOKEN");
+        console.log(index);
+        const configuration = {
+            method: "delete",
+            url: "http://localhost:3000/auth/delete",
+            headers: {
+                Authorization: `Bearer ${token.token}`
+            },
+            data: {
+                index: index
+            }
+        };
+
+        await axios(configuration)
+            .then(response => {
+                console.log(response);
+                window.location.reload();
+            })
+            .catch(err => {
+                console.log(err);
+            })
     };
 
     const logout = () => {
@@ -105,7 +130,8 @@ export const AuthProvider = ({ userData, children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ user, setUser, logout, register, login, errorMessage, setError, notes, setNotes, addNote }}>
+        <AuthContext.Provider value={{ user, setUser, logout, register, 
+            login, errorMessage, setError, notes, setNotes, addNote, deleteNote }}>
             {children}
         </AuthContext.Provider>
     );
