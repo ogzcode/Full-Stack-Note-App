@@ -10,6 +10,14 @@ function AddForm() {
     const [content, setContent] = useState("");
 
     const { addNote } = useAuth();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        addNote(title, content);
+        setTitle("");
+        setContent("");
+    };
     
     return (
         <div className="d-flex justify-content-center align-items-center vh-100">
@@ -27,7 +35,7 @@ function AddForm() {
                     />
                 </Form.Group>
                 <div className="text-center mt-4">
-                    <Button variant="primary" type="submit" onClick={() => addNote(title, content)}>
+                    <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
                         Submit
                     </Button>
                 </div>

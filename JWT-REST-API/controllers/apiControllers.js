@@ -6,11 +6,6 @@ export const getTest = (req, res) => {
     res.send("Hello test");
 };
 
-export const getAllData = (req, res) => {
-    let users = JSON.parse(readFileSync("./model/users.json")).users;
-    res.json(users);
-};
-
 export const register = (req, res) => {
     const { email, password } = req.body;
 
@@ -111,7 +106,7 @@ export const addNote = (req, res) => {
         "utf8"
     );
     
-    res.status(201).send({ message: "Your note has been added" });
+    res.status(201).send("Your note is created");
 };
 
 export const getUserNote = (req, res) => {
@@ -133,5 +128,5 @@ export const deleteNote = (req, res) => {
         "utf8"
     );
 
-    res.status(204).json({ message: "Deleted"});
+    res.status(204).send({ message: "Deleted"});
 }

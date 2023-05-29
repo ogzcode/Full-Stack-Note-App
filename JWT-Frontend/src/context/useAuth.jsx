@@ -89,9 +89,9 @@ export const AuthProvider = ({ userData, children }) => {
         };
 
         await axios(configuration)
-            .then((response) => {
+            .then(response => {
                 console.log(response);
-                redirect("profile");
+                navigate("profile");
             })
             .catch((error) => {
                 let err = error.toJSON().status;
@@ -100,7 +100,7 @@ export const AuthProvider = ({ userData, children }) => {
 
     const deleteNote = async (index) => {
         const token = cookies.get("TOKEN");
-        console.log(index);
+        
         const configuration = {
             method: "delete",
             url: "http://localhost:3000/auth/delete",

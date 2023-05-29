@@ -11,7 +11,7 @@ export default function Register() {
 
     const { register, setError, errorMessage } = useAuth();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         register(email, password);
