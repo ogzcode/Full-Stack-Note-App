@@ -1,76 +1,41 @@
 {
   "users": [
     {
-      "id": "PvAxkgLfUWZqD14B_xuFz",
+      "id": "tPqtYAXMjWirPrgsouKl9",
+      "email": "ogz@mail",
+      "password": "12345",
+      "notes": [
+        {
+          "title": "t4t4t4t",
+          "content": "t4t4t4",
+          "date": "29.05.2023"
+        },
+        {
+          "title": "First note",
+          "content": "juoojo",
+          "date": "29.05.2023"
+        },
+        {
+          "title": "First note 2",
+          "content": "8999",
+          "date": "29.05.2023"
+        }
+      ],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidFBxdFlBWE1qV2lyUHJnc291S2w5IiwiZW1haWwiOiJvZ3pAbWFpbCIsImlhdCI6MTY4NTM0Mzc3OSwiZXhwIjoxNjg1MzQ3Mzc5fQ.k3P9urQBZh0kBkDNNyZU4BIErpQKN3-Hqu4xghbwz04"
+    },
+    {
+      "id": "L860fEtBcboyosPK10Bll",
       "email": "oğuzhan@email",
-      "password": "12345",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiUHZBeGtnTGZVV1pxRDE0Ql94dUZ6IiwiZW1haWwiOiJvxJ91emhhbkBlbWFpbCIsImlhdCI6MTY4NDkyNzU1OSwiZXhwIjoxNjg0OTM0NzU5fQ.eYCpitkw34P7mayND3xM4YvcNI6PpO57c68lM_oAzwk"
-    },
-    {
-      "id": "UQKfjXm3tMtb0-KLH0hLJ",
-      "email": "oğuzhanguc@email",
-      "password": "125",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiVVFLZmpYbTN0TXRiMC1LTEgwaExKIiwiZW1haWwiOiJvxJ91emhhbmd1Y0BlbWFpbCIsImlhdCI6MTY4NDkyNzU2OSwiZXhwIjoxNjg0OTM0NzY5fQ.v7wnb5ZVUw9mf_zhuQKaNtYEMzJFZ4YNECM2DJJsCDk"
-    },
-    {
-      "id": "YRlaHNWB_fEgPMTX7ZOwB",
-      "email": "hello@mail.com",
-      "password": "hello",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiWVJsYUhOV0JfZkVnUE1UWDdaT3dCIiwiZW1haWwiOiJoZWxsb0BtYWlsLmNvbSIsImlhdCI6MTY4NDkyOTE3NCwiZXhwIjoxNjg0OTM2Mzc0fQ.hdg7RGqPB7ylMnvnkNHQoySILswukMc3RvkFk8hVnjo"
-    },
-    {
-      "id": "77Dqu_p2yhck2y6SRFsND",
-      "email": "linda.spencer@example.com",
       "password": "1234",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzdEcXVfcDJ5aGNrMnk2U1JGc05EIiwiZW1haWwiOiJsaW5kYS5zcGVuY2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNjg0OTI5MzU1LCJleHAiOjE2ODQ5MzY1NTV9.ObXAqVFH0DCLIjd9CtOltv_l48h7Ar9HOrijdnHT5HA"
+      "notes": [],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTDg2MGZFdEJjYm95b3NQSzEwQmxsIiwiZW1haWwiOiJvxJ91emhhbkBlbWFpbCIsImlhdCI6MTY4NTM0NjMwOCwiZXhwIjoxNjg1MzQ5OTA4fQ.2NXLcwcFne7NOqNDuae9AmkYZ-i7GwkyLLGzpkBwdJ8"
     },
     {
-      "id": "boAghxMY6078f-0fKLR-5",
-      "email": "oguzguc44@gmail.com",
-      "password": "12345",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYm9BZ2h4TVk2MDc4Zi0wZktMUi01IiwiZW1haWwiOiJvZ3V6Z3VjNDRAZ21haWwuY29tIiwiaWF0IjoxNjg0OTM4ODE0LCJleHAiOjE2ODQ5NDYwMTR9.jsVI5Dl-vdlaxvm27kF_F9GzdEjzv468PezaoOcK6kg"
-    },
-    {
-      "id": "_Hm2A2wkfeYDt7PktCSYc",
-      "email": "ogz@email",
-      "password": "12345",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiX0htMkEyd2tmZVlEdDdQa3RDU1ljIiwiZW1haWwiOiJvZ3pAZW1haWwiLCJpYXQiOjE2ODQ5OTg1MzAsImV4cCI6MTY4NTAwNTczMH0.fnStt-h9BMVJs1B8luPAtOdp1_ycbUoAdbSHXFdJE5U"
-    },
-    {
-      "id": "sBx1gsN5bwr5UsXDX9laU",
-      "email": "ogz@hello",
-      "password": "12345",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic0J4MWdzTjVid3I1VXNYRFg5bGFVIiwiZW1haWwiOiJvZ3pAaGVsbG8iLCJpYXQiOjE2ODUwMDEwNjMsImV4cCI6MTY4NTAwODI2M30.yugejxUS_QSxihUMI9w14T2bzlC-ugL-0IkkXMEVwRI"
-    },
-    {
-      "id": "aU2l7lByjUwbnL4goa3ia",
-      "email": "world@mail",
-      "password": "12345",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYVUybDdsQnlqVXdibkw0Z29hM2lhIiwiZW1haWwiOiJ3b3JsZEBtYWlsIiwiaWF0IjoxNjg1MDA0MTEyLCJleHAiOjE2ODUwMTEzMTJ9.23H7QKCZ6Cb-ywYWnlWLqLg2hgHNydlGdAPlzwlZV9Q"
-    },
-    {
-      "id": "wtk7LLIQQigeYxD12y_QD",
-      "email": "joe@mail",
-      "password": "12345",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoid3RrN0xMSVFRaWdlWXhEMTJ5X1FEIiwiZW1haWwiOiJqb2VAbWFpbCIsImlhdCI6MTY4NTAwNjU0NywiZXhwIjoxNjg1MDEzNzQ3fQ.2In0tkCcAwilHu8q5mApwDGwZv37MvR2rmx2cA3pZd0"
-    },
-    {
-      "id": "J35o1T6Og6q5-UmnUuClG",
-      "email": "zdgnsn@mail",
-      "password": "wqdqdrq",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiSjM1bzFUNk9nNnE1LVVtblV1Q2xHIiwiZW1haWwiOiJ6ZGduc25AbWFpbCIsImlhdCI6MTY4NTAwNjgxOSwiZXhwIjoxNjg1MDE0MDE5fQ.4SUf5Du5ra5M5SwQ5FzZ_oPgpB-uWin8KAjzNhw7hKg"
-    },
-    {
-      "id": "_dd2K3eX0LqUtiPlRmxhv",
-      "email": "tjtyjy@mail",
-      "password": "wrgergr",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiX2RkMkszZVgwTHFVdGlQbFJteGh2IiwiZW1haWwiOiJ0anR5anlAbWFpbCIsImlhdCI6MTY4NTAwNjg1OSwiZXhwIjoxNjg1MDE0MDU5fQ.R0e0sfeeolHVSnhj5vE7ucE_CmijW2jHrG2-eP0jRck"
-    },
-    {
-      "id": "LRaeUHHFfyfVsZd7man6s",
-      "email": "gklutl@mail",
-      "password": "ewgtrwg",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiTFJhZVVISEZmeWZWc1pkN21hbjZzIiwiZW1haWwiOiJna2x1dGxAbWFpbCIsImlhdCI6MTY4NTAwNjg5MSwiZXhwIjoxNjg1MDE0MDkxfQ.zk19qiWJeiE7BE-aAHWXHw7lKSlA60Y-9eppDIMUdLA"
+      "id": "PCHsuxoO7zUboKEKN_-_1",
+      "email": "",
+      "password": "",
+      "notes": [],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiUENIc3V4b083elVib0tFS05fLV8xIiwiZW1haWwiOiIiLCJpYXQiOjE2ODUzNDg4MzgsImV4cCI6MTY4NTM1MjQzOH0.bHYM2ADmV6WG8n1DWkpCyiX9RT48SoJoj78k4GiGngA"
     }
   ]
 }

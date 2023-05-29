@@ -5,7 +5,7 @@ export const ProtectedRoutes = ({ children }) => {
     const { user } = useAuth();
 
     if (!user || user.token  === "") {
-        return <Navigate to="/" />;
+        return <Navigate to="/login" />;
     }
 
     return children;

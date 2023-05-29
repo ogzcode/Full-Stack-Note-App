@@ -12,6 +12,7 @@ export const auth = async (request, response, next) => {
         const user = await decodedToken;
 
         // pass the user down to the endpoints here
+        //console.log(user);
         request.user = user;
 
         // pass down functionality to the endpoint

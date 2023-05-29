@@ -1,11 +1,13 @@
 import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { login } = useAuth();
+    const navigate = useNavigate();
+    const { login, errorMessage } = useAuth();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,7 +31,14 @@ export default function Login() {
                 <Form.Group controlId="formBasicPasswordLogin">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
+                    {
+                        errorMessage && <p className="text-danger mt-2" style={{ fontSize: "12px"}}>{ errorMessage }</p>
+                    }
                 </Form.Group>
+
+                <div className="text-center mt-1">
+                    <button className="btn btn-link" style={{ fontSize: "14px" }} onClick={() => navigate("/register")}>Go to register page</button>
+                </div>
 
                 {/* submit button */}
                 <div className="text-center mt-3">

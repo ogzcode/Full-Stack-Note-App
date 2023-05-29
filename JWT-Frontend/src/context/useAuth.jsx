@@ -4,13 +4,15 @@ import React from "react";
 import axios from "axios";
 
 import Cookies from "universal-cookie";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 const cookies = new Cookies();
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ userData, children }) => {
     const [user, setUser] = useState(userData);
+    const [notes, setNotes] = useState([]);
+    const [errorMessage, setError] = useState(null);
     const navigate = useNavigate();
 
     const register = async (email, password) => {
@@ -23,12 +25,20 @@ export const AuthProvider = ({ userData, children }) => {
             }
         };
 
-        axios(configuration)
-            .then((result) => {
+        await axios(configuration)
+            .then(response => {
+                setError("");
                 navigate("/login");
             })
             .catch((error) => {
-                error = new Error();
+                let err = error.toJSON().status;
+                if (err === 409) {
+                    setError("");
+                    navigate("/login");
+                }
+                else if (err === 400) {
+                    setError({ status: 400, message: "All input is required" });
+                }
             });
     };
 
@@ -42,9 +52,8 @@ export const AuthProvider = ({ userData, children }) => {
             }
         }
 
-        axios(configuration)
+        await axios(configuration)
             .then((result) => {
-                console.log(result.data);
                 cookies.set("TOKEN", result.data, {
                     path: "/",
                 });
@@ -52,19 +61,51 @@ export const AuthProvider = ({ userData, children }) => {
                 navigate("/profile");
             })
             .catch((error) => {
-                error = new Error();
+                let err = error.toJSON().status;
+                if (err === 404) {
+                    setError({});
+                    navigate("/register");
+                }
+                else if (err === 400) {
+                    console.log("hello");
+                    setError({ status: 400, message: "Passwords does not match!!" });
+                    navigate("/login");
+                }
+            });
+    };
+
+    const addNote = async (title, content) => {
+        const token = cookies.get("TOKEN");
+        const configuration = {
+            method: "post",
+            url: "http://localhost:3000/auth/addNote",
+            headers: {
+                Authorization: `Bearer ${token.token}`
+            },
+            data: {
+                title,
+                content
+            }
+        };
+
+        await axios(configuration)
+            .then(response => {
+                redirect("/profile");
+            })
+            .catch((error) => {
+                let err = error.toJSON().status;
             });
     };
 
     const logout = () => {
         cookies.remove("TOKEN", { path: "/" });
         setUser("");
-        navigate("/");
+        navigate("/login");
     };
 
 
     return (
-        <AuthContext.Provider value={{ user, setUser, logout, register, login }}>
+        <AuthContext.Provider value={{ user, setUser, logout, register, login, errorMessage, setError, notes, setNotes, addNote }}>
             {children}
         </AuthContext.Provider>
     );

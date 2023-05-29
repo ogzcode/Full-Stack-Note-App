@@ -1,7 +1,7 @@
 import express from "express";
 
 import { auth } from "./auth.js";
-import { getTest, getAllData, register, login } from "./controllers/apiControllers.js";
+import { getTest, getAllData, register, login, getAuthUser, addNote, getUserNote } from "./controllers/apiControllers.js";
 
 const app = express();
 
@@ -32,9 +32,11 @@ app.get("/free-endpoint", (request, response) => {
     response.json({ message: "You are free to access me anytime" });
 });
 
-app.get("/auth-endpoint", auth, (request, response) => {
-    response.json({ message: "You are authorized to access me" });
-});
+app.get("/auth", auth, getAuthUser);
+
+app.post("/auth/addNote", auth, addNote);
+
+app.get("/auth/notes", auth, getUserNote);
 
 app.listen(3000, () => {
     console.log("Sunucu: localhost:3000");

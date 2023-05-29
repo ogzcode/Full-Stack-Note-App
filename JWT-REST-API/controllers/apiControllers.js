@@ -30,7 +30,8 @@ export const register = (req, res) => {
     const user = {
         "id": nanoid(),
         "email": email,
-        "password": password
+        "password": password,
+        "notes": []
     };
 
     // Create token
@@ -53,7 +54,7 @@ export const register = (req, res) => {
     );
 
     // return new user
-    res.status(201);
+    res.status(201).json({ message: "User added" });
 };
 
 export const login = (req, res) => {
@@ -86,3 +87,36 @@ export const login = (req, res) => {
         token,
     });
 };
+
+export const getAuthUser = (req, res) => {
+    let users = JSON.parse(readFileSync("./model/users.json")).users;
+    let user = users.find(user => user.email === req.user.userEmail);
+    res.json({ message: "You are authorized to access me", user });
+}
+
+export const addNote = (req, res) => {
+    let users = JSON.parse(readFileSync("./model/users.json")).users;
+    let user = users.find(user => user.email === req.user.userEmail);
+
+    const date = new Date()
+    user.notes.push({
+        "title": req.body.title,
+        "content": req.body.content,
+        "date": date.toLocaleDateString()
+    });
+
+    writeFileSync(
+        "./model/users.json",
+        JSON.stringify({ users: users }, null, 2),
+        "utf8"
+    );
+    
+    res.status(201).json({ message: "Your note has been added" });
+};
+
+export const getUserNote = (req, res) => {
+    let users = JSON.parse(readFileSync("./model/users.json")).users;
+    let user = users.find(user => user.email === req.user.email);
+
+    res.status(200).json({ notes: user.notes });
+}
