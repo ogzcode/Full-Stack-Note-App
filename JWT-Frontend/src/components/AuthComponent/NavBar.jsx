@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaHome, FaUser, FaSignOutAlt, FaPlus} from "react-icons/fa";
-import { useAuth } from "../context/useAuth";
+import { useAuth } from "../../context/useAuth";
 
 function NavBar() {
     const { user, logout } = useAuth();

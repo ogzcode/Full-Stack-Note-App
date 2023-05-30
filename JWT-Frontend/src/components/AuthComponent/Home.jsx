@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useAuth } from "../context/useAuth";
+import { useAuth } from "../../context/useAuth";
 import { Card, Button } from "react-bootstrap";
 
 import { FaTrash } from "react-icons/fa";
