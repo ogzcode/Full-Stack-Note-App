@@ -31,13 +31,14 @@ export const AuthProvider = ({ userData, children }) => {
                 navigate("/login");
             })
             .catch((error) => {
-                let err = error.toJSON().status;
-                if (err === 409) {
-                    setError("");
-                    navigate("/login");
+                let err = error.response;
+                if (err.status === 409) {
+                    setError(err.data.message);
+                    return
                 }
-                else if (err === 400) {
-                    setError({ status: 400, message: "All input is required" });
+                else if (err.status === 400) {
+                    setError(err.data.message);
+                    return
                 }
             });
     };
@@ -61,15 +62,12 @@ export const AuthProvider = ({ userData, children }) => {
                 navigate("/profile");
             })
             .catch((error) => {
-                let err = error.toJSON().status;
-                if (err === 404) {
-                    setError({});
-                    navigate("/register");
+                let err = error.response;
+                if (err.status === 404) {
+                    setError(err.data.message);
                 }
-                else if (err === 400) {
-                    console.log("hello");
-                    setError({ status: 400, message: "Passwords does not match!!" });
-                    navigate("/login");
+                else if (err.status === 400) {
+                    setError(err.data.message);
                 }
             });
     };
@@ -90,7 +88,6 @@ export const AuthProvider = ({ userData, children }) => {
 
         await axios(configuration)
             .then(response => {
-                console.log(response);
                 navigate("profile");
             })
             .catch((error) => {
@@ -100,7 +97,7 @@ export const AuthProvider = ({ userData, children }) => {
 
     const deleteNote = async (index) => {
         const token = cookies.get("TOKEN");
-        
+
         const configuration = {
             method: "delete",
             url: "http://localhost:3000/auth/delete",
@@ -122,6 +119,49 @@ export const AuthProvider = ({ userData, children }) => {
             })
     };
 
+    const updateProfile = async (firstName, lastName, newPassword) => {
+        const token = cookies.get("TOKEN");
+        const configuration = {
+            method: "patch",
+            url: "http://localhost:3000/auth/updateProfile",
+            headers: {
+                Authorization: `Bearer ${token.token}`
+            },
+            data: {
+                firstName,
+                lastName,
+                newPassword
+            }
+        };
+
+        await axios(configuration)
+            .then(response => {
+                navigate("profile");
+            })
+            .catch((error) => {
+                let err = error.toJSON().status;
+            });
+    }
+
+    const deleteAccount = async () => {
+        const token = cookies.get("TOKEN");
+        const configuration = {
+            method: "delete",
+            url: "http://localhost:3000/auth/deleteUser",
+            headers: {
+                Authorization: `Bearer ${token.token}`
+            }
+        };
+
+        await axios(configuration)
+            .then(response => {
+                console.log(response);
+            })
+            .catch((error) => {
+                let err = error.toJSON().status;
+            });
+    };
+
     const logout = () => {
         cookies.remove("TOKEN", { path: "/" });
         setUser("");
@@ -130,8 +170,11 @@ export const AuthProvider = ({ userData, children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ user, setUser, logout, register, 
-            login, errorMessage, setError, notes, setNotes, addNote, deleteNote }}>
+        <AuthContext.Provider value={{
+            user, setUser, logout, register,
+            login, errorMessage, setError, notes, setNotes, addNote, deleteNote,
+            updateProfile, deleteAccount
+        }}>
             {children}
         </AuthContext.Provider>
     );
