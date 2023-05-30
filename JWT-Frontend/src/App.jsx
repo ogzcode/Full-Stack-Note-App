@@ -1,12 +1,12 @@
 import './App.css'
-import { useNavigate, Route, Routes, redirect, useLocation, Outlet } from "react-router-dom"
+import { useNavigate, Route, Routes, redirect } from "react-router-dom"
 
 import Cookies from "universal-cookie";
 import { AuthProvider } from './context/useAuth';
 import { useEffect } from 'react';
 import Register from './components/Register';
 import Login from './components/Login';
-import AuthComp from './components/AuthComp';
+import AuthComp from './components/AuthComponent/AuthComp';
 import { ProtectedRoutes } from './ProtectedRoutes';
 import ErrorPage from './components/ErrorPage';
 const cookies = new Cookies();
@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     if (!token) {
-      redirect("/register")
+      redirect("/")
     }
     else {
       redirect("/profile");
@@ -28,7 +28,7 @@ function App() {
   return (
     <AuthProvider userData={token}>
       <Routes>
-      <Route path='/' element={<Register />} />
+        <Route path='/' element={<Register />} />
         <Route path='profile/*' element={
           <ProtectedRoutes>
             <AuthComp />
@@ -36,7 +36,7 @@ function App() {
         }
         />
         <Route path='login' element={<Login />} />
-        <Route path='/*' element={<ErrorPage/>}/>
+        <Route path='/*' element={<ErrorPage />} />
       </Routes>
     </AuthProvider>
   )
