@@ -1,8 +1,10 @@
 # Full-Stack-JWT-Example
-JWT token kullanımını öğrenmek için geliştirdiğim Full Stack uygulama.<br>
+JWT token kullanımını öğrenmek için geliştirdiğim basit bir Full Stack Note tutma uygulaması.<br>
 Bu uygulamada Node.js ile geliştirdiğim basit bir REST API aracılığı ile Frontend tarafında kullanıcı girişi ve kullanıcı doğrulaması yaptım.<br>
 
 ## Çalıştırmak İçin
+Kurulum yapacağınız cihazda mutlaka Node.js kurulu olmalıdır.
+> Veriler herhangi bir veritabanına kayıt edilmemektedir. Veriler JSON formatındaki bir dosyada tutulmaktadır.
 ```
 git clone https://github.com/ogzcode/Full-Stack-JWT-Example.git
 
@@ -35,3 +37,6 @@ npm start
 * Node.js ile jwt token oluşturma ve bunun REST API ile kullanılması
 * Korumalı rotalar oluşturma
 * cookie ekleme ve silme
+* REST API ve client taraflarında CRUD işlemleri gerçekleştirme
+* Giriş yapan kullanıcıların not oluşturup silebilmesi
+* Form controlleri ve hata mesajı yayınlama
