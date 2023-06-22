@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/useAuth";
 import { useNavigate } from "react-router-dom";
 
+import { registerServices } from "../services/request";
+
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,7 +28,7 @@ export default function Register() {
         }
     }, [errorMessage]);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if ((email && password)) {
@@ -38,7 +40,15 @@ export default function Register() {
                 return;
             }
 
-            register(email, password);
+            try {
+                const response = await registerServices({ email, password });
+                console.log(response);
+                navigate("/login");
+            }
+            catch (error) {
+                let err = error.response;
+                console.log(err);
+            }
 
             setEmail("");
             setPassword("");

@@ -4,7 +4,7 @@ import React from "react";
 import axios from "axios";
 
 import Cookies from "universal-cookie";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const cookies = new Cookies();
 
 const AuthContext = createContext(null);
