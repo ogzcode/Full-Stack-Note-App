@@ -1,42 +1,35 @@
 import './App.css'
-import { useNavigate, Route, Routes, redirect } from "react-router-dom"
+import { Route, Routes, Navigate } from "react-router-dom"
 
-import Cookies from "universal-cookie";
 import { AuthProvider } from './context/useAuth';
-import { useEffect } from 'react';
-import Register from './components/Register';
-import Login from './components/Login';
+import Login from './pages/auth/Login';
 import AuthComp from './components/AuthComponent/AuthComp';
-import { ProtectedRoutes } from './ProtectedRoutes';
-import ErrorPage from './components/ErrorPage';
-const cookies = new Cookies();
+
+import Register from "./pages/auth/Register"
+import { getToken } from './services/storage';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const navigate = useNavigate();
-  const token = cookies.get("TOKEN");
-
-  useEffect(() => {
-    if (!token) {
-      redirect("/")
-    }
-    else {
-      redirect("/profile");
-    }
-  }, []);
-
+  const token = getToken();
+  const user = useSelector(state => state.user.user);
 
   return (
     <AuthProvider userData={token}>
       <Routes>
-        <Route path='/' element={<Register />} />
-        <Route path='profile/*' element={
-          <ProtectedRoutes>
-            <AuthComp />
-          </ProtectedRoutes>
+        {
+          user || token ? (
+            <>
+              <Route path="/home/*" element={<AuthComp />}/>
+              <Route path='/*' element={<Navigate to={"/home"} />} />
+            </>
+          ) : (
+            <>
+              <Route path='/register' element={<Register />} />
+              <Route path='login' element={<Login />} />
+              <Route path='/*' element={<Navigate to={"/register"} />} />
+            </>
+          )
         }
-        />
-        <Route path='login' element={<Login />} />
-        <Route path='/*' element={<ErrorPage />} />
       </Routes>
     </AuthProvider>
   )
