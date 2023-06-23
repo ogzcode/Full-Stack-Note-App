@@ -5,14 +5,10 @@ import { Card, Button } from "react-bootstrap";
 
 import { FaTrash } from "react-icons/fa";
 
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
-
 function Home() {
     const { user, notes, setNotes, deleteNote } = useAuth();
-    const token = cookies.get("TOKEN");
 
-    async function getData() {
+    /* async function getData() {
         const config = {
             method: "get",
             url: "http://localhost:3000/auth",
@@ -33,7 +29,7 @@ function Home() {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, []); */
 
     return (
         <div className="p-5 d-flex gap-5 flex-wrap justify-content-center">
