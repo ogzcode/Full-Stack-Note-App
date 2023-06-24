@@ -1,9 +1,8 @@
 import './App.css'
 import { Route, Routes, Navigate } from "react-router-dom"
 
-import { AuthProvider } from './context/useAuth';
 import Login from './pages/auth/Login';
-import AuthComp from './components/AuthComponent/AuthComp';
+import AuthComp from './pages/home/AuthComp';
 
 import Register from "./pages/auth/Register"
 import { getToken } from './services/storage';
@@ -14,7 +13,6 @@ function App() {
   const user = useSelector(state => state.user.user);
 
   return (
-    <AuthProvider userData={token}>
       <Routes>
         {
           user || token ? (
@@ -31,7 +29,6 @@ function App() {
           )
         }
       </Routes>
-    </AuthProvider>
   )
 }
 

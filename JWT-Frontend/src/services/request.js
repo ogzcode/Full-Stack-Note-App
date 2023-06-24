@@ -23,3 +23,18 @@ export const registerServices = (data) => {
 export const loginServices = (data) => {
     return axios.post(`${BASE_URL}/login`, data);
 }
+
+
+
+
+export const getAllNotesServices = () => {
+    return axios.get(`${BASE_URL}/notes`);
+}
+
+export const addNoteServices = (data) => {
+    return axios.post(`${BASE_URL}/add-note`, data);
+}
+
+export const deleteNoteServices = (id) => {
+    return axios.delete(`${BASE_URL}/delete/${id}`);
+}
