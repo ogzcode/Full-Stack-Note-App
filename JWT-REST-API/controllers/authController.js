@@ -76,23 +76,3 @@ export const login = (req, res) => {
         token,
     });
 };
-
-export const getAuthUser = (req, res) => {
-    let users = JSON.parse(readFileSync("./model/users.json")).users;
-    let user = users.find(user => user.email === req.user.userEmail);
-    res.json({ message: "You are authorized to access me", user });
-}
-
-export const deleteUser = (req, res) => {
-    let users = JSON.parse(readFileSync("./model/users.json")).users;
-    let newUsers = users.filter(user => user.email !== req.user.userEmail);
-    console.log(newUsers);
-    
-    writeFileSync(
-        "./model/users.json",
-        JSON.stringify({ users: newUsers }, null, 2),
-        "utf8"
-    );
-
-    res.status(204);
-};

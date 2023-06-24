@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 
 import { auth } from "./auth.js";
-import { getTest, addNote, getUserNote, deleteNote, updateProfile } from "./controllers/apiControllers.js";
-import { register, login, getAuthUser, deleteUser} from "./controllers/authController.js";
+import { addNote, getUserNote, deleteNote } from "./controllers/apiControllers.js";
+import { register, login} from "./controllers/authController.js";
 
 const app = express();
 
@@ -12,18 +12,12 @@ app.use(express.json());
 
 app.use(cors());
 
-app.get("/test", getTest);
-
 app.post("/register", register);
 app.post("/login", login);
 
-app.delete("/auth/deleteUser", auth, deleteUser);
-
-app.get("/auth", auth, getAuthUser);
-app.post("/auth/addNote", auth, addNote);
-app.get("/auth/notes", auth, getUserNote);
-app.delete("/auth/delete", auth, deleteNote);
-app.patch("/auth/updateProfile", auth, updateProfile);
+app.post("/add-note", auth, addNote);
+app.get("/notes", auth, getUserNote);
+app.delete("/delete/:id", auth, deleteNote);
 
 app.listen(3000, () => {
     console.log("Sunucu: localhost:3000");
