@@ -12,6 +12,7 @@ function NavBar() {
     const handleLogout = async () => {
         await dispatch(logout());
         navigate("/login");
+        //window.location.reload();
     }
 
     return (
@@ -19,8 +20,7 @@ function NavBar() {
             <h1 className="text-white">Take Note</h1>
             <div>
                 <Link to="" className="text-white text-decoration-none me-5 fs-4"><FaHome/></Link>
-                <Link to="addNote" className="text-white text-decoration-none me-5 fs-4"><FaPlus/></Link>
-                <Link to="profilePage" className="text-white text-decoration-none me-5 fs-4"><FaUser/></Link>
+                <Link to="add-note" className="text-white text-decoration-none me-5 fs-4"><FaPlus/></Link>
                 <button className="btn text-white fs-4 pe-auto pointer" onClick={() => handleLogout()}><FaSignOutAlt /></button>
             </div>
         </nav>

@@ -1,6 +1,9 @@
 import { Form, Button } from "react-bootstrap";
-import { useAuth } from "../../context/useAuth";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+
+import { useDispatch} from "react-redux";
+import { addNoteThunk } from "../../redux/slice/noteSlice";
 
 function AddForm() {
     const [title, setTitle] = useState("");
@@ -8,26 +11,16 @@ function AddForm() {
     const [show, setShow] = useState(false);
     const [validated, setValidated] = useState(false);
 
-    const { addNote, errorMessage, setError } = useAuth();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (errorMessage) {
-            setShow(true);
-            let timer = setTimeout(() => {
-                setShow(false);
-                setError("");
-            }, 1500);
-
-            return () => clearInterval(timer);
-        }
-    }, [errorMessage]);
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (title && content) {
-            addNote(title, content);
-
+            await dispatch(addNoteThunk({ title, content }));
+            
+            navigate("/home");
             setTitle("");
             setContent("");
         }
@@ -37,11 +30,6 @@ function AddForm() {
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100">
-            {
-                errorMessage && <Alert show={show} variant={"danger"} className="position-absolute top-0 start-50 translate-middle-x mt-4">
-                    {errorMessage}
-                </Alert>
-            }
             <Form className="w-25" onSubmit={handleSubmit} noValidate validated={validated}>
                 <h1 className="text-center mb-3">Add New Note</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">

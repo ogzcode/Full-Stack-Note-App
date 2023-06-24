@@ -1,35 +1,24 @@
-import axios from "axios";
 import { useEffect } from "react";
-import { useAuth } from "../../context/useAuth";
-import { Card, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 
+import { Card, Button } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 
+import { getAllNoteThunk, deleteNoteThunk } from "../../redux/slice/noteSlice";
+
 function Home() {
-    const { user, notes, setNotes, deleteNote } = useAuth();
-
-    /* async function getData() {
-        const config = {
-            method: "get",
-            url: "http://localhost:3000/auth",
-            headers: {
-                Authorization: `Bearer ${token.token}`
-            }
-        };
-
-        await axios(config)
-            .then(response => {
-                setNotes(response.data.user.notes);
-                console.log(result.data.user.notes);
-            })
-            .catch(e => {
-                e = new Error();
-            });
-    };
+    const notes = useSelector(state => state.note.notes);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getData();
-    }, []); */
+        if (notes.length === 0) {
+            dispatch(getAllNoteThunk());
+        }
+    }, []);
+
+    const handleDelete = async (id) => {
+        await dispatch(deleteNoteThunk(id));
+    }
 
     return (
         <div className="p-5 d-flex gap-5 flex-wrap justify-content-center">
@@ -44,7 +33,7 @@ function Home() {
                                     d.content ? d.content : "Some quick example text to build on the card title and make up the bulk of the card's content."
                                 }
                             </Card.Text>
-                            <Button variant="outline-danger" className="btn-sm" onClick={() => deleteNote(i)}><FaTrash /></Button>
+                            <Button variant="outline-danger" className="btn-sm" onClick={() => handleDelete(d.id)}><FaTrash /></Button>
                         </Card.Body>
                     </Card>
                 ))
