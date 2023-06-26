@@ -5,7 +5,7 @@ import Login from './pages/auth/Login';
 import AuthComp from './pages/home/AuthComp';
 
 import Register from "./pages/auth/Register"
-import { getToken } from './services/storage';
+import { getToken, removeToken } from './services/storage';
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -13,11 +13,12 @@ function App() {
   const user = useSelector(state => state.user.user);
 
   return (
+    <div className='relative'>
       <Routes>
         {
           user || token ? (
             <>
-              <Route path="/home/*" element={<AuthComp />}/>
+              <Route path="/home/*" element={<AuthComp />} />
               <Route path='/*' element={<Navigate to={"/home"} />} />
             </>
           ) : (
@@ -29,6 +30,7 @@ function App() {
           )
         }
       </Routes>
+    </div>
   )
 }
 

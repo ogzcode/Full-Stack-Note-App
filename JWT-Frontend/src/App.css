@@ -42,3 +42,25 @@
   top: .5rem;
   right: 1.5rem;
 }
+
+.auth-page {
+  background-image: linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
+}
+
+.alert {
+  animation: alertAnimation 0.3s ease-in-out;
+}
+
+@keyframes alertAnimation {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.sidebar {
+  transition: all 0.3s ease-in-out;
+}
+
