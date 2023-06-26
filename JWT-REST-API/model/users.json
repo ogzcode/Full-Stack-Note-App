@@ -15,7 +15,20 @@
       "lastName": "",
       "email": "ogzCode@mail",
       "password": "12345",
-      "notes": [],
+      "notes": [
+        {
+          "id": "ZJfKwSIEr1SFxre6n5JY6",
+          "title": "helklo",
+          "content": "wefegf2wegf",
+          "date": "24.06.2023"
+        },
+        {
+          "id": "c31p6spxPw40dH7sqOWqR",
+          "title": "hello world",
+          "content": "helo world",
+          "date": "24.06.2023"
+        }
+      ],
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiM1VHbmxlNkNtWHhRc2VnTlZUM0s5IiwiZW1haWwiOiJvZ3pDb2RlQG1haWwiLCJpYXQiOjE2ODc0NDM5NzUsImV4cCI6MTY4NzQ0NzU3NX0.IQi3QE7KkB2ucQylnTI9laKmL33Y_zbPo2rmLWsimd4"
     }
   ]
