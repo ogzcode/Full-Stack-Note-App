@@ -1,27 +1,28 @@
-import { Link } from "react-router-dom";
-import { FaHome, FaUser, FaSignOutAlt, FaPlus} from "react-icons/fa";
-
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slice/userSlice";
 
+import { AiOutlineMenu } from "react-icons/ai"
+import { MdLogout } from "react-icons/md"
+
+import { useToggleContext } from "../../context/useToggleContext";
+
 function NavBar() {
+    const { toggle, handleToggle } = useToggleContext();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleLogout = async () => {
         await dispatch(logout());
-        navigate("/login");
+        redirect("/login");
         //window.location.reload();
     }
 
     return (
-        <nav className="navbar bg-dark fs-5 py-2 px-5" data-bs-theme="dark">
-            <h1 className="text-white">Take Note</h1>
-            <div>
-                <Link to="" className="text-white text-decoration-none me-5 fs-4"><FaHome/></Link>
-                <Link to="add-note" className="text-white text-decoration-none me-5 fs-4"><FaPlus/></Link>
-                <button className="btn text-white fs-4 pe-auto pointer" onClick={() => handleLogout()}><FaSignOutAlt /></button>
+        <nav className="text-slate-300" style={{ borderBottom: ".1rem solid #cbd5e1" }}>
+            <div className="flex justify-between items-center py-4 px-8">
+                <button className="text-2xl cursor-pointer" onClick={() => handleToggle(!toggle)}><AiOutlineMenu /></button>
+                <button className="text-2xl cursor-pointer" onClick={() => handleLogout()}><MdLogout /></button>
             </div>
         </nav>
     );

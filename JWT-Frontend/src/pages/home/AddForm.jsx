@@ -1,63 +1,49 @@
-import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AiOutlineClear } from "react-icons/ai";
 
-import { useDispatch} from "react-redux";
+import { useToggleContext } from "../../context/useToggleContext";
+import { useNoteUpdateContext } from "../../context/useNoteUpdateContext";
 import { addNoteThunk } from "../../redux/slice/noteSlice";
 
-function AddForm() {
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
-    const [show, setShow] = useState(false);
-    const [validated, setValidated] = useState(false);
-
+export default function AuthComponent() {
+    const { selectedNote, handleUpdate } = useNoteUpdateContext();
+    console.log(selectedNote);
+    const [title, setTitle] = useState(selectedNote.title || "");
+    const [content, setContent] = useState(selectedNote.content || "");
+    const { toggle } = useToggleContext();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (title && content) {
-            await dispatch(addNoteThunk({ title, content }));
-            
-            navigate("/home");
-            setTitle("");
-            setContent("");
+        
+        if (title.trim() === "" || content.trim() === "") {
+            return;
         }
 
-        setValidated(true);
-    };
+        await dispatch(addNoteThunk({ title, content }));
+        setTitle("");
+        setContent("");
+    }
+
+    const handleClear = () => {
+        setTitle("");
+        setContent("");
+        handleUpdate({});
+    }
 
     return (
-        <div className="d-flex justify-content-center align-items-center vh-100">
-            <Form className="w-25" onSubmit={handleSubmit} noValidate validated={validated}>
-                <h1 className="text-center mb-3">Add New Note</h1>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Note Title</Form.Label>
-                    <Form.Control type="text" placeholder="Enter title" value={title} 
-                    onChange={e => setTitle(e.target.value)} required />
-                    <Form.Control.Feedback type="invalid">
-                        Please write your note title
-                    </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.Label>Note</Form.Label>
-                    <Form.Control as="textarea" placeholder="Enter your note" rows={5}
-                        value={content} onChange={e => setContent(e.target.value)} required
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        Please write your note content
-                    </Form.Control.Feedback>
-                </Form.Group>
-                <div className="text-center mt-4">
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
+        <div style={{ transition: "left 0.3s ease-in-out" }} className={`sidebar relative ${toggle ? "w-3/4 left-1/4" : "w-full left-0"}`}>
+            {
+                Object.keys(selectedNote).length > 0 && <button className="text-white absolute right-6 text-2xl cursor-pointer"><AiOutlineClear/></button>
+            }
+            <form onSubmit={handleSubmit}>
+                <div className="flex mb-4">
+                    <button type="submit" className="bg-white text-teal-900 ml-2 px-8 mr-6 rounded-md">Add</button>
+                    <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Write Note Title" className="w-full p-2 rounded-md text-white text-lg bg-transparent outline-0" />
                 </div>
-            </Form>
+                <textarea value={content} onChange={e => setContent(e.target.value)} placeholder="Write Note Content" className="block w-full min-h-screen bg-transparent p-2 text-white outline-0 resize-none" />
+            </form>
         </div>
     );
 }
-
-export default AddForm;
