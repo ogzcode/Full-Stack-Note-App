@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllNotesServices, addNoteServices, deleteNoteServices } from "../../services/request";
+import { getAllNotesServices, addNoteServices, deleteNoteServices, updateNoteServices } from "../../services/request";
 
 export const getAllNoteThunk = createAsyncThunk("note/getAll", async (data, thunkAPI) => {
     try {
@@ -28,17 +28,30 @@ export const deleteNoteThunk = createAsyncThunk("note/delete", async (id, thunkA
     }
 });
 
+export const updateNoteThunk = createAsyncThunk("note/update", async (data, thunkAPI) => {
+    try {
+        const response = await updateNoteServices(data);
+        return response.data.note;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data);
+    }
+});
+
 export const noteSlice = createSlice({
     name: 'note',
     initialState: {
         notes: [],
         isFetching: false,
         error: false,
-        errorMessage: null
+        errorMessage: null,
+        selectedNote: {}
     },
     reducers: {
         setError: (state, action) => {
             state.error = action.payload;
+        },
+        setSelectedNote: (state, action) => {
+            state.selectedNote = action.payload;
         }
     },
     extraReducers(builder) {
@@ -78,8 +91,21 @@ export const noteSlice = createSlice({
             state.error = true;
             state.errorMessage = action.payload.message;
         });
+        builder.addCase(updateNoteThunk.pending, (state) => {
+            state.isFetching = true;
+        });
+        builder.addCase(updateNoteThunk.fulfilled, (state, action) => {
+            state.isFetching = false;
+            const index = state.notes.findIndex(note => note.id === action.payload.id);
+            state.notes[index] = action.payload;
+        });
+        builder.addCase(updateNoteThunk.rejected, (state, action) => {
+            state.isFetching = false;
+            state.error = true;
+            state.errorMessage = action.payload.message;
+        });
     }
 });
 
-export const { setError } = noteSlice.actions;
+export const { setError, setSelectedNote } = noteSlice.actions;
 export default noteSlice.reducer;

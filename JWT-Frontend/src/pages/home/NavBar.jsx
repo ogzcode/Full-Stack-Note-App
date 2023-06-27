@@ -15,7 +15,7 @@ function NavBar() {
     const handleLogout = async () => {
         await dispatch(logout());
         redirect("/login");
-        //window.location.reload();
+        window.location.reload();
     }
 
     return (

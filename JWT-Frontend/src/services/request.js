@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken } from './storage';
+import { getToken, removeToken } from './storage';
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -16,6 +16,20 @@ axios.interceptors.request.use(
     }
 );
 
+axios.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response.status === 401) {
+            console.log("hello ", error.response);
+            removeToken();
+            window.location.href = '/login';
+        }
+        return Promise.reject(error);
+    }
+);
+
 export const registerServices = (data) => {
     return axios.post(`${BASE_URL}/register`, data);
 }
@@ -23,8 +37,6 @@ export const registerServices = (data) => {
 export const loginServices = (data) => {
     return axios.post(`${BASE_URL}/login`, data);
 }
-
-
 
 
 export const getAllNotesServices = () => {
@@ -38,3 +50,7 @@ export const addNoteServices = (data) => {
 export const deleteNoteServices = (id) => {
     return axios.delete(`${BASE_URL}/delete/${id}`);
 }
+
+export const updateNoteServices = (data) => {
+    return axios.put(`${BASE_URL}/update`, data);
+};

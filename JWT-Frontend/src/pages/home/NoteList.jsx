@@ -4,17 +4,19 @@ import { LuTrash2 }  from "react-icons/lu"
 
 
 import { useToggleContext } from "../../context/useToggleContext";
-import { useNoteUpdateContext } from "../../context/useNoteUpdateContext";
-
-import { getAllNoteThunk, deleteNoteThunk } from "../../redux/slice/noteSlice";
+import { getAllNoteThunk, deleteNoteThunk, setSelectedNote } from "../../redux/slice/noteSlice";
 
 function Note({ note }) {
-    const { handleUpdate } = useNoteUpdateContext();
-
     const dispatch = useDispatch();
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id, event) => {
+        event.stopPropagation();
         await dispatch(deleteNoteThunk(id));
+        dispatch(setSelectedNote({}));
+    }
+
+    const handleUpdate = (note) => {
+        dispatch(setSelectedNote(note));
     }
 
     return (
@@ -23,7 +25,7 @@ function Note({ note }) {
             <p className="text-sm text-slate-300 w-3/4" style={{ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>
                 {note.content}
             </p>
-            <button onClick={() => handleDelete(note.id)} className="absolute text-red-500 right-0 top-1/2 -translate-y-1/2 text-xl cursor-pointer mx-6"><LuTrash2 /></button>
+            <button onClick={(e) => handleDelete(note.id, e)} className="absolute text-red-500 right-0 top-1/2 -translate-y-1/2 text-xl cursor-pointer mx-6"><LuTrash2 /></button>
         </div>
     );
 }
@@ -40,7 +42,7 @@ export default function NoteList() {
     }, []);
 
     return (
-        <div className={`sidebar absolute min-h-full top-0 left-0 z-10 overflow-hidden ${toggle ? "w-1/4 border-r" : "w-0"}`}>
+        <div className={`sidebar absolute h-full top-0 left-0 z-10 overflow-y-scroll ${toggle ? "w-1/4 border-r" : "w-0"}`}>
             {
                 notes.length > 0 ? (
                     notes.map((note, i) => <Note key={i} note={note} />)
