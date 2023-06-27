@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import { auth } from "./auth.js";
-import { addNote, getUserNote, deleteNote } from "./controllers/apiControllers.js";
+import { addNote, getUserNote, deleteNote, updateNote } from "./controllers/apiControllers.js";
 import { register, login} from "./controllers/authController.js";
 
 const app = express();
@@ -18,6 +18,7 @@ app.post("/login", login);
 app.post("/add-note", auth, addNote);
 app.get("/notes", auth, getUserNote);
 app.delete("/delete/:id", auth, deleteNote);
+app.put("/update", auth, updateNote);
 
 app.listen(3000, () => {
     console.log("Sunucu: localhost:3000");

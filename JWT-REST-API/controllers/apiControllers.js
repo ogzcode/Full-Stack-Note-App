@@ -44,7 +44,6 @@ export const deleteNote = (req, res) => {
         res.status(404).json({ message: "Note not found" });
         return;
     }
-    console.log(note);
 
     user.notes.splice(user.notes.indexOf(note), 1);
 
@@ -57,4 +56,27 @@ export const deleteNote = (req, res) => {
     res.status(204).json({ message: "Deleted"});
 }
 
+export const updateNote = (req, res) => {
+    const {id, title, content} = req.body;
+
+    let users = JSON.parse(readFileSync("./model/users.json")).users;
+    let user = users.find(user => user.email === req.user.userEmail);
+
+    const note = user.notes.find(note => note.id === id);
+    if (!note) {
+        res.status(404).json({ message: "Note not found" });
+        return;
+    }
+
+    note.title = title;
+    note.content = content;
+
+    writeFileSync(
+        "./model/users.json",
+        JSON.stringify({ users: users }, null, 2),
+        "utf8"
+    );
+
+    res.status(200).json({ message: "Updated", note:  note });
+}
 
