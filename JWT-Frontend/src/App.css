@@ -64,3 +64,16 @@
   transition: all 0.3s ease-in-out;
 }
 
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+  height: 16px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background-color: none;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 4px;
+}

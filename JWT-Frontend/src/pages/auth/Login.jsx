@@ -7,8 +7,7 @@ import { loginThunk, setError, setErrorMessage } from "../../redux/slice/userSli
 import loginSVG from "../../assets/login.svg";
 import { AiOutlineArrowRight, AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-import { Alert } from "react-bootstrap";
-
+import { Alert } from "../../components/Alert";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -69,16 +68,16 @@ export default function Login() {
                     <form className="" onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label className="block text-sm mb-1 text-slate-500">Email</label>
-                            <input type="email" placeholder="Enter email" name="email" className="text-teal-950 px-2 py-1 rounded-md border w-full border-gray-600 outline-0"
+                            <input type="email" placeholder="Enter email" name="email" className="text-teal-950 px-4 py-2 rounded-md border w-full border-gray-600 outline-0"
                                 value={email} onChange={e => handleChange(e.target.value, setEmail)} required />
                         </div>
 
                         <div className="mb-3">
                             <label className="block text-sm mb-1 text-slate-500">Password</label>
                             <div className="relative">
-                                <input type={showPassword ? "text" : "password"} placeholder="Password" name="password" className="text-teal-950 px-2 py-1 rounded-md border w-full border-gray-600 outline-0"
+                                <input type={showPassword ? "text" : "password"} placeholder="Password" name="password" className="text-teal-950 px-4 py-2 rounded-md border w-full border-gray-600 outline-0"
                                     value={password} onChange={e => handleChange(e.target.value, setPassword)} required />
-                                <span className="absolute top-1/2 right-2 text-lg text-teal-800 transform -translate-y-1/2 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+                                <span className="absolute top-1/2 right-2 text-xl text-teal-800 transform -translate-y-1/2 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
                                     {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
                                 </span>
                             </div>
