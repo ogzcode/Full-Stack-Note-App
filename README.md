@@ -26,7 +26,7 @@ npm start
 > Frontend
 * React
 * Vite
-* Bootstarp
+* Tailwind
 * universal-cookie
 * React Router
 
@@ -40,3 +40,13 @@ npm start
 * REST API ve client taraflarında CRUD işlemleri gerçekleştirme
 * Giriş yapan kullanıcıların not oluşturup silebilmesi
 * Form controlleri ve hata mesajı yayınlama
+
+### Ekran Görüntüleri
+<br>
+
+#### Register Page
+![Register Page](screenshot/register.png)<br>
+#### Login Page
+![Login Page](screenshot/login.png)<br>
+#### Home Page
+![Home Page](screenshot/home.png)
