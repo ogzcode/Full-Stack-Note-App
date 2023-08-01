@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+.font-lato-light {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+.font-lato-regular {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+
+.font-lato-bold {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+
+.auth__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    width: 160px;
+    height: 40px;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.05));
+}
+
+
+.login__btn {
+    filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.05));
+}
