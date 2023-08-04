@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
+
+.font-lato-light {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+.font-lato-regular {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+
+.font-lato-bold {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+
+.font-montserrat-light {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+
+.font-montserrat-regular {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.font-montserrat-medium {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.font-montserrat-bold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+

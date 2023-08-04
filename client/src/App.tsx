@@ -5,6 +5,7 @@ import './App.css'
 import AuthLayout from "./pages/auth/AuthLayout"
 import Login from "./pages/auth/Login"
 import SignUp from "./pages/auth/SignUp"
+import Home from "./pages/home/Home"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
         </Route>
+        <Route path="/" element={<Home />} />
       </Routes>
     </>
   )
