@@ -1,0 +1,23 @@
+.ql-toolbar.ql-snow {
+    border: none !important;
+    padding: 0 !important;
+}
+
+.ql-container.ql-snow {
+    border: none !important;
+    padding: 0 !important;
+}
+
+.ql-editor::-webkit-scrollbar {
+    width: 4px;
+}
+
+.ql-editor::-webkit-scrollbar-thumb {
+    background: #c4c4c4;
+    border-radius: 20px;
+}
+
+.action__button:hover {
+    transition: all .2s ease-in-out;
+    filter: brightness(0.92);
+}

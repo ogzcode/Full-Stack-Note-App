@@ -2,9 +2,6 @@
     width: 4px;
 }
  
-.note__box::-webkit-scrollbar-track {
-}
- 
 .note__box::-webkit-scrollbar-thumb {
     background: #c4c4c4;
     border-radius: 20px;
