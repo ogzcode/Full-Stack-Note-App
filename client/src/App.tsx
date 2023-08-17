@@ -5,7 +5,7 @@ import './App.css'
 import AuthLayout from "./pages/auth/AuthLayout"
 import Login from "./pages/auth/Login"
 import SignUp from "./pages/auth/SignUp"
-import Home from "./pages/home/Home"
+import Home from "./pages/main/Home"
 
 function App() {
 

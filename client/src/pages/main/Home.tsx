@@ -1,4 +1,4 @@
-import SideMenu from "./SideMenu";
+import SideMenu from "./sidemenu/SideMenu";
 import NoteSide from "./NoteSide";
 import Editor from "./Editor";
 
