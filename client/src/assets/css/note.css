@@ -1,3 +1,8 @@
+.note__box {
+    max-height: calc(100vh - 10rem);
+    overflow-y: scroll;
+}
+
 .note__box::-webkit-scrollbar {
     width: 4px;
 }

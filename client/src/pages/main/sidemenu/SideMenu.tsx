@@ -29,15 +29,20 @@ export default function SideMenu() {
             path: "/settings",
             name: "Settings",
             iconName: "settings"
+        },
+        {
+            path: "/logout",
+            name: "Logout",
+            iconName: "logout"
         }
     ]
 
     return (
-        <div className='h-full flex flex-col justify-between items-start col-span-2 bg-[#355443E0] p-6'>
+        <div className='h-full flex flex-col justify-between items-start col-span-2 bg-[#355443E0] p-2 lg:p-6 max-lg:col-span-1'>
             <div className='w-full'>
                 <div className="flex items-center mb-6">
-                    <img src={logo} className="w-[64px] pr-4 lg:w-[48px]" />
-                    <h1 className="font-lato-bold text-2xl text-white lg:text-lg">No<span className="text-[#FFB636]">TT</span>e</h1>
+                    <img src={logo} className="w-[48px] lg:w-[64px] md:pr-4" />
+                    <h1 className="font-lato-bold text-2xl text-white max-lg:hidden">No<span className="text-[#FFB636]">TT</span>e</h1>
                 </div>
                 <nav>
                     {

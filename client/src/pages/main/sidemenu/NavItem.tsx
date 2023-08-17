@@ -9,11 +9,11 @@ type NavItemProps = {
 
 export default function NavItem({ path, name, iconName }: NavItemProps) {
     return (
-        <div className='mb-6 p-2 rounded w-full text-white font-montserrat-medium flex items-center hover:bg-white/20'>
+        <Link to={path} className='mb-6 p-2 rounded text-white font-montserrat-medium flex items-center hover:bg-white/20'>
             {
                 getSVG(iconName)
             }
-            <Link to={path}>{name}</Link>
-        </div>
+            <span className='max-lg:hidden'>{name}</span>
+        </Link>
     );
 }
